@@ -1,0 +1,98 @@
+============================================
+core/assign/unary_operator_macro
+============================================
+
+`define M 1
+`define F(x) (x != 0)
+
+module mod ();
+  localparam int P = -`M;
+  assign a = !`M;
+  assign b = ~`F(c);
+  assign d = e & ~`F(c);
+endmodule
+
+----
+
+(source_file
+  (text_macro_definition
+    (text_macro_name
+      (simple_identifier))
+    (macro_text))
+  (text_macro_definition
+    (text_macro_name
+      (simple_identifier)
+      (list_of_formal_arguments
+        (formal_argument
+          (simple_identifier))))
+    (macro_text))
+  (module_declaration
+    (module_nonansi_header
+      (module_keyword)
+      name: (simple_identifier)
+      (list_of_ports))
+    (module_item
+      (local_parameter_declaration
+        (data_type_or_implicit
+          (data_type
+            (integer_atom_type)))
+        (list_of_param_assignments
+          (param_assignment
+            (simple_identifier)
+            (constant_param_expression
+              (constant_mintypmax_expression
+                (constant_expression
+                  operator: (unary_operator)
+                  argument: (text_macro_usage
+                    (simple_identifier)))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (text_macro_usage
+                (simple_identifier)))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (text_macro_usage
+                (simple_identifier)
+                (list_of_actual_arguments
+                  (actual_argument
+                    (param_expression
+                      (mintypmax_expression
+                        (expression
+                          (primary
+                            (hierarchical_identifier
+                              (simple_identifier))))))))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              left: (expression
+                (primary
+                  (hierarchical_identifier
+                    (simple_identifier))))
+              right: (expression
+                operator: (unary_operator)
+                argument: (text_macro_usage
+                  (simple_identifier)
+                  (list_of_actual_arguments
+                    (actual_argument
+                      (param_expression
+                        (mintypmax_expression
+                          (expression
+                            (primary
+                              (hierarchical_identifier
+                                (simple_identifier)))))))))))))))))

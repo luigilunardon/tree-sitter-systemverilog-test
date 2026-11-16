@@ -1,0 +1,93 @@
+============================================
+core/assign/unary_operator_nested
+============================================
+
+module mod ();
+  localparam int P = !|C;
+  assign a = !|c;
+  assign b = -&c;
+  assign d = !!c;
+  assign e = f || !^c;
+endmodule
+
+----
+
+(source_file
+  (module_declaration
+    (module_nonansi_header
+      (module_keyword)
+      name: (simple_identifier)
+      (list_of_ports))
+    (module_item
+      (local_parameter_declaration
+        (data_type_or_implicit
+          (data_type
+            (integer_atom_type)))
+        (list_of_param_assignments
+          (param_assignment
+            (simple_identifier)
+            (constant_param_expression
+              (constant_mintypmax_expression
+                (constant_expression
+                  operator: (unary_operator)
+                  argument: (constant_expression
+                    operator: (unary_operator)
+                    argument: (constant_primary
+                      (simple_identifier))))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (expression
+                operator: (unary_operator)
+                argument: (primary
+                  (hierarchical_identifier
+                    (simple_identifier)))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (expression
+                operator: (unary_operator)
+                argument: (primary
+                  (hierarchical_identifier
+                    (simple_identifier)))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (expression
+                operator: (unary_operator)
+                argument: (primary
+                  (hierarchical_identifier
+                    (simple_identifier)))))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              left: (expression
+                (primary
+                  (hierarchical_identifier
+                    (simple_identifier))))
+              right: (expression
+                operator: (unary_operator)
+                argument: (expression
+                  operator: (unary_operator)
+                  argument: (primary
+                    (hierarchical_identifier
+                      (simple_identifier))))))))))))
