@@ -1,0 +1,57 @@
+============================================
+core/assign/unary_operator_inc_dec
+============================================
+
+module mod ();
+  initial begin
+    a = !b++;
+    c = ~--d;
+  end
+endmodule
+
+----
+
+(source_file
+  (module_declaration
+    (module_nonansi_header
+      (module_keyword)
+      name: (simple_identifier)
+      (list_of_ports))
+    (module_item
+      (initial_construct
+        (statement_or_null
+          (statement
+            (statement_item
+              (seq_block
+                (statement_or_null
+                  (statement
+                    (statement_item
+                      (blocking_assignment
+                        (operator_assignment
+                          (variable_lvalue
+                            (hierarchical_identifier
+                              (simple_identifier)))
+                          (assignment_operator)
+                          (expression
+                            operator: (unary_operator)
+                            argument: (inc_or_dec_expression
+                              (variable_lvalue
+                                (hierarchical_identifier
+                                  (simple_identifier)))
+                              (inc_or_dec_operator))))))))
+                (statement_or_null
+                  (statement
+                    (statement_item
+                      (blocking_assignment
+                        (operator_assignment
+                          (variable_lvalue
+                            (hierarchical_identifier
+                              (simple_identifier)))
+                          (assignment_operator)
+                          (expression
+                            operator: (unary_operator)
+                            argument: (inc_or_dec_expression
+                              (inc_or_dec_operator)
+                              (variable_lvalue
+                                (hierarchical_identifier
+                                  (simple_identifier))))))))))))))))))
