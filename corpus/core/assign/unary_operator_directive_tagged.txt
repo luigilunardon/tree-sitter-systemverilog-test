@@ -1,0 +1,60 @@
+============================================
+core/assign/unary_operator_directive_tagged
+============================================
+
+module mod ();
+  assign a = -`__LINE__;
+  assign b = !`__FILE__;
+  assign c = !tagged Invalid;
+  assign d = ~tagged Valid e;
+endmodule
+
+----
+
+(source_file
+  (module_declaration
+    (module_nonansi_header
+      (module_keyword)
+      name: (simple_identifier)
+      (list_of_ports))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (file_or_line_compiler_directive))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (file_or_line_compiler_directive))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (tagged_union_expression
+                (simple_identifier)))))))
+    (module_item
+      (continuous_assign
+        (list_of_net_assignments
+          (net_assignment
+            (net_lvalue
+              (simple_identifier))
+            (expression
+              operator: (unary_operator)
+              argument: (tagged_union_expression
+                (simple_identifier)
+                (primary
+                  (hierarchical_identifier
+                    (simple_identifier)))))))))))
